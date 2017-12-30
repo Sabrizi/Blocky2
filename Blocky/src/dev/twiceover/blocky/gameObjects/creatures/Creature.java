@@ -1,32 +1,33 @@
 package dev.twiceover.blocky.gameObjects.creatures;
 
+import java.awt.Color;
+
 import dev.twiceover.blocky.gameObjects.GameObject;
 
 public abstract class Creature extends GameObject{
 
 	public static final int DEFAULT_HEALTH = 1;
 	public static final float DEFAULT_SPEED = 1f;
-	public static final int DEFAULT_WIDTH = 64, DEFAULT_HEIGHT = 64;
+	public static final int CREATURE_WIDTH = 16, CREATURE_HEIGHT = 16;
 	
 	protected int health;
 	protected float speed;
 	protected float xMove, yMove;
+	protected Color color;
 	
-	public Creature(float x, float y, int width, int height) {
+	public Creature(float x, float y, int width, int height, Color color) {
 		super(x, y, width, height);
 		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;
 		xMove = 0; 
 		yMove = 0;
+		this.color = color;
 	}
 	
 	public void move() {
 		x += xMove;
 		y += yMove;
-	}
-	
-	
-	
+	}	
 
 	public float getxMove() {
 		return xMove;

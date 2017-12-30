@@ -1,16 +1,16 @@
 package dev.twiceover.blocky.gameObjects.creatures;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import dev.twiceover.blocky.Game;
-import dev.twiceover.blocky.gfx.Assets;
 
 public class Player extends Creature {
 
 	private Game game;
 
 	public Player(float x, float y, Game game) {
-		super(x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
+		super(x, y, Creature.CREATURE_WIDTH, Creature.CREATURE_HEIGHT, Color.RED);
 		this.game = game;
 		setSpeed(5f);
 	}
@@ -20,28 +20,29 @@ public class Player extends Creature {
 		getInput();
 		move();
 	}
-	
+
 	private void getInput() {
 		xMove = 0;
 		yMove = 0;
-		
-		if(game.getKeyManager().up) {
+
+		if (game.getKeyManager().up) {
 			yMove = -speed;
 		}
-		if(game.getKeyManager().down) {
+		if (game.getKeyManager().down) {
 			yMove = speed;
 		}
-		if(game.getKeyManager().left) {
+		if (game.getKeyManager().left) {
 			xMove = -speed;
 		}
-		if(game.getKeyManager().right) {
+		if (game.getKeyManager().right) {
 			xMove = speed;
 		}
 	}
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.player, (int)x, (int)y, width, height, null);
+		g.setColor(color);
+		g.fillRect((int)x, (int)y, width, height);
 	}
 
 }

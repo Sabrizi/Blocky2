@@ -44,7 +44,6 @@ public class Game implements Runnable {
 		gameState = new GameState(this);
 		mainMenuState = new MainMenuState(this);
 		StateManager.setState(gameState);
-
 	}
 
 	private void tick() {
@@ -71,8 +70,6 @@ public class Game implements Runnable {
 		if (current != null) {
 			current.render(g);
 		}
-
-		// g.drawImage(Assets.player, 10, 10, null);
 
 		// End Drawing
 		bs.show();
@@ -104,7 +101,7 @@ public class Game implements Runnable {
 			}
 
 			if (timer >= 1000000000) {
-//				System.out.println("Ticks and Frames: " + ticks);
+				System.out.println("Ticks and Frames: " + ticks);
 				ticks = 0;
 				timer = 0;
 			}

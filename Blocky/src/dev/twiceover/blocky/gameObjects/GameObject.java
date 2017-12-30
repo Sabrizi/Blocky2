@@ -2,11 +2,9 @@ package dev.twiceover.blocky.gameObjects;
 
 import java.awt.Graphics;
 
-public abstract class GameObject {
-	
+public abstract class GameObject {	
 	protected float x, y;
-	protected int width, height;
-	
+	protected int width, height;	
 	
 	public GameObject(float x, float y, int width, int height) {
 		this.x = x;
