@@ -2,16 +2,16 @@ package dev.twiceover.blocky.states;
 
 import java.awt.Graphics;
 
-import dev.twiceover.blocky.Game;
+import dev.twiceover.blocky.Handler;
 
 public abstract class State {	
 	public abstract void tick();
 	
 	public abstract void render(Graphics g);
 	
-	protected Game game;
+	protected Handler handler;
 	
-	public State(Game game) {
-		this.game = game;
+	public State(Handler handler) {
+		this.handler = handler;
 	}
 }

@@ -5,6 +5,7 @@ import java.awt.image.BufferStrategy;
 
 import dev.twiceover.blocky.display.Display;
 import dev.twiceover.blocky.gfx.Assets;
+import dev.twiceover.blocky.gfx.GameCamera;
 import dev.twiceover.blocky.input.KeyManager;
 import dev.twiceover.blocky.states.GameState;
 import dev.twiceover.blocky.states.MainMenuState;
@@ -20,14 +21,17 @@ public class Game implements Runnable {
 	private BufferStrategy bs;
 	private Graphics g;
 	private KeyManager km;
+	private GameCamera gameCamera;
 
 	// Public Variables
-	public int width, height;
+	private int width, height;
 	public String title;
 
 	// States
 	private State gameState;
 	private State mainMenuState;
+	
+	private Handler handler;
 
 	public Game(String title, int width, int height) {
 		this.width = width;
@@ -40,15 +44,18 @@ public class Game implements Runnable {
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(km);
 		Assets.init();
-
-		gameState = new GameState(this);
-		mainMenuState = new MainMenuState(this);
+		
+		handler = new Handler(this);
+		gameCamera = new GameCamera(handler, 0, 0);
+		
+		gameState = new GameState(handler);
+		mainMenuState = new MainMenuState(handler);
 		StateManager.setState(gameState);
 	}
 
 	private void tick() {
 		km.tick();
-		
+
 		State current = StateManager.getState();
 		if (current != null) {
 			current.tick();
@@ -114,7 +121,19 @@ public class Game implements Runnable {
 	public KeyManager getKeyManager() {
 		return this.km;
 	}
-	
+
+	public GameCamera getGameCamera() {
+		return gameCamera;
+	}
+
+	public int getWidth() {
+		return this.width;
+	}
+
+	public int getHeight() {
+		return this.height;
+	}
+
 	public synchronized void start() {
 		if (running) return;
 		running = true;

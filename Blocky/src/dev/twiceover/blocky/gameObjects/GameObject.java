@@ -1,18 +1,26 @@
 package dev.twiceover.blocky.gameObjects;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
-public abstract class GameObject {	
+import dev.twiceover.blocky.Handler;
+
+public abstract class GameObject {
 	protected float x, y;
-	protected int width, height;	
-	
-	public GameObject(float x, float y, int width, int height) {
+	protected int width, height;
+	protected Handler handler;
+	protected Rectangle bounds;
+
+	public GameObject(Handler handler, float x, float y, int width, int height) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.handler = handler;
+
+		bounds = new Rectangle(0, 0, width, height);
 	}
-	
+
 	public float getX() {
 		return x;
 	}
@@ -46,6 +54,6 @@ public abstract class GameObject {
 	}
 
 	public abstract void tick();
-	
+
 	public abstract void render(Graphics g);
 }
