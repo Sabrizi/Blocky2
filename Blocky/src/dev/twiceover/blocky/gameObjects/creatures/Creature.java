@@ -15,10 +15,9 @@ public abstract class Creature extends GameObject {
 	protected int health;
 	protected float speed;
 	protected float xMove, yMove;
-	protected Color color;
 
 	public Creature(Handler handler, float x, float y, int width, int height, Color color) {
-		super(handler, x, y, width, height);
+		super(handler, x, y, width, height, color);
 		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;
 		xMove = 0;

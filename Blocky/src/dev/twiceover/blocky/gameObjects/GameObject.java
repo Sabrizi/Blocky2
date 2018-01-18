@@ -1,5 +1,6 @@
 package dev.twiceover.blocky.gameObjects;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -10,13 +11,15 @@ public abstract class GameObject {
 	protected int width, height;
 	protected Handler handler;
 	protected Rectangle bounds;
+	protected Color color;
 
-	public GameObject(Handler handler, float x, float y, int width, int height) {
+	public GameObject(Handler handler, float x, float y, int width, int height, Color color) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
 		this.handler = handler;
+		this.color = color;
 
 		bounds = new Rectangle(0, 0, width, height);
 	}

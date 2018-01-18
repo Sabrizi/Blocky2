@@ -3,8 +3,11 @@ package dev.twiceover.blocky.worlds;
 import java.awt.Graphics;
 
 import dev.twiceover.blocky.Handler;
+import dev.twiceover.blocky.gameObjects.GameObjectManager;
 import dev.twiceover.blocky.gameObjects.blocks.Block;
 import dev.twiceover.blocky.gameObjects.blocks.BlockManager;
+import dev.twiceover.blocky.gameObjects.creatures.Player;
+import dev.twiceover.blocky.gameObjects.statics.Tree;
 import dev.twiceover.blocky.utils.Utils;
 
 public class World {
@@ -12,14 +15,24 @@ public class World {
 	private int width, height;
 	private int spawnx, spawny;
 	private int[][] blocks;
+	
+	private GameObjectManager objectManager;
 
 	public World(Handler handler, String path) {
 		this.handler = handler;
+		objectManager = new GameObjectManager(handler, new Player(handler, 100, 100));
+		objectManager.addGameObject(new Tree(handler, 200, 200));
+		objectManager.addGameObject(new Tree(handler, 200, 210));
+		objectManager.addGameObject(new Tree(handler, 200, 220));
+		
 		loadWorld(path);
+		
+		objectManager.getPlayer().setX(spawnx);
+		objectManager.getPlayer().setY(spawny);
 	}
 
 	public void tick() {
-
+		objectManager.tick();
 	}
 
 	public void render(Graphics g) {
@@ -35,6 +48,8 @@ public class World {
 						(int)(y * Block.BLOCK_HEIGHT - handler.getGameCamera().getYoffset()));
 			}
 		}
+		
+		objectManager.render(g);
 	}
 
 	public Block getBlock(int x, int y) {
