@@ -7,13 +7,18 @@ import java.awt.Rectangle;
 import dev.twiceover.blocky.Handler;
 
 public abstract class GameObject {
+	public static final int DEFAULT_HEALTH = 5;
+	
 	protected float x, y;
 	protected int width, height;
 	protected Handler handler;
 	protected Rectangle bounds;
 	protected Color color;
-
+	protected int health;
+	protected boolean active = true;
+	
 	public GameObject(Handler handler, float x, float y, int width, int height, Color color) {
+		this.health = DEFAULT_HEALTH;
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -30,6 +35,16 @@ public abstract class GameObject {
 
 	public void setX(float x) {
 		this.x = x;
+	}
+	
+	public abstract void die();
+	
+	public void hurt(int amount) {
+		health -= amount;
+		if(health <= 0) {
+			active = false;
+			die();
+		}
 	}
 
 	public Boolean checkObjectCollisions(float xoffset, float yoffset) {
@@ -70,6 +85,22 @@ public abstract class GameObject {
 
 	public void setHeight(int height) {
 		this.height = height;
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public abstract void tick();

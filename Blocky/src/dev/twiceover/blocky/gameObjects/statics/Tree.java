@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import dev.twiceover.blocky.Handler;
 import dev.twiceover.blocky.gameObjects.blocks.Block;
+import dev.twiceover.blocky.items.Item;
 
 public class Tree extends StaticGameObject {
 
@@ -21,6 +22,11 @@ public class Tree extends StaticGameObject {
 	public void tick() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void die() {
+		handler.getWorld().getItemManager().addItem(Item.woodItem.createNew((int)x, (int)y));
 	}
 
 	@Override

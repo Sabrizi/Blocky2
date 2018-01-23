@@ -8,6 +8,7 @@ import dev.twiceover.blocky.gameObjects.blocks.Block;
 import dev.twiceover.blocky.gameObjects.blocks.BlockManager;
 import dev.twiceover.blocky.gameObjects.creatures.Player;
 import dev.twiceover.blocky.gameObjects.statics.Tree;
+import dev.twiceover.blocky.items.ItemManager;
 import dev.twiceover.blocky.utils.Utils;
 
 public class World {
@@ -18,13 +19,15 @@ public class World {
 	private int[][] blocks;
 	
 	private GameObjectManager objectManager;
+	private ItemManager itemManager;
 
 	public World(Handler handler, String path) {
 		this.handler = handler;
 		objectManager = new GameObjectManager(handler, new Player(handler, 100, 100));
+		itemManager = new ItemManager(handler);
 		objectManager.addGameObject(new Tree(handler, 200, 200));
-		objectManager.addGameObject(new Tree(handler, 200, 210));
-		objectManager.addGameObject(new Tree(handler, 200, 220));
+		objectManager.addGameObject(new Tree(handler, 200, 216));
+		objectManager.addGameObject(new Tree(handler, 200, 232));
 		
 		loadWorld(path);
 		
@@ -33,6 +36,7 @@ public class World {
 	}
 
 	public void tick() {
+		itemManager.tick();
 		objectManager.tick();
 	}
 
@@ -50,6 +54,7 @@ public class World {
 			}
 		}
 		
+		itemManager.render(g);
 		objectManager.render(g);
 	}
 
@@ -89,5 +94,21 @@ public class World {
 
 	public GameObjectManager getObjectManager() {
 		return objectManager;
+	}
+
+	public Handler getHandler() {
+		return handler;
+	}
+
+	public void setHandler(Handler handler) {
+		this.handler = handler;
+	}
+
+	public ItemManager getItemManager() {
+		return itemManager;
+	}
+
+	public void setItemManager(ItemManager itemManager) {
+		this.itemManager = itemManager;
 	}
 }

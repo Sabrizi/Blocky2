@@ -8,17 +8,15 @@ import dev.twiceover.blocky.gameObjects.blocks.Block;
 
 public abstract class Creature extends GameObject {
 
-	public static final int DEFAULT_HEALTH = 1;
+
 	public static final float DEFAULT_SPEED = 1f;
 	public static final int CREATURE_WIDTH = 16, CREATURE_HEIGHT = 16;
 
-	protected int health;
 	protected float speed;
 	protected float xMove, yMove;
 
 	public Creature(Handler handler, float x, float y, int width, int height, Color color) {
 		super(handler, x, y, width, height, color);
-		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;
 		xMove = 0;
 		yMove = 0;

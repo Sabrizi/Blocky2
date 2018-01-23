@@ -7,6 +7,7 @@ import dev.twiceover.blocky.display.Display;
 import dev.twiceover.blocky.gfx.Assets;
 import dev.twiceover.blocky.gfx.GameCamera;
 import dev.twiceover.blocky.input.KeyManager;
+import dev.twiceover.blocky.input.MouseManager;
 import dev.twiceover.blocky.states.GameState;
 import dev.twiceover.blocky.states.MainMenuState;
 import dev.twiceover.blocky.states.State;
@@ -20,7 +21,10 @@ public class Game implements Runnable {
 	private Boolean running = false;
 	private BufferStrategy bs;
 	private Graphics g;
+	
 	private KeyManager km;
+	private MouseManager mm;
+	
 	private GameCamera gameCamera;
 
 	// Public Variables
@@ -28,8 +32,8 @@ public class Game implements Runnable {
 	public String title;
 
 	// States
-	private State gameState;
-	private State mainMenuState;
+	public State gameState;
+	public State mainMenuState;
 	
 	private Handler handler;
 
@@ -38,11 +42,16 @@ public class Game implements Runnable {
 		this.height = height;
 		this.title = title;
 		km = new KeyManager();
+		mm = new MouseManager();
 	}
 
 	private void init() {
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(km);
+		display.getFrame().addMouseListener(mm);
+		display.getFrame().addMouseMotionListener(mm);
+		display.getCanvas().addMouseListener(mm);
+		display.getCanvas().addMouseMotionListener(mm);
 		Assets.init();
 		
 		handler = new Handler(this);
@@ -120,6 +129,10 @@ public class Game implements Runnable {
 
 	public KeyManager getKeyManager() {
 		return this.km;
+	}
+	
+	public MouseManager getMouseManager() {
+		return this.mm;
 	}
 
 	public GameCamera getGameCamera() {

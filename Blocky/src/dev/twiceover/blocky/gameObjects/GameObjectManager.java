@@ -2,6 +2,7 @@ package dev.twiceover.blocky.gameObjects;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import dev.twiceover.blocky.Handler;
 import dev.twiceover.blocky.gameObjects.creatures.Player;
@@ -20,13 +21,18 @@ public class GameObjectManager {
 	}
 
 	public void tick() {
-		for (int i = 0; i < objects.size(); i++) {
-			objects.get(i).tick();
+		Iterator<GameObject> it = objects.iterator();
+		while (it.hasNext()) {
+			GameObject o = it.next();
+			o.tick();
+			if (!o.isActive()) {
+				it.remove();
+			}
 		}
 	}
 
 	public void render(Graphics g) {
-		for(GameObject o : objects) {
+		for (GameObject o : objects) {
 			o.render(g);
 		}
 	}

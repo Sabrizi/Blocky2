@@ -2,6 +2,7 @@ package dev.twiceover.blocky;
 
 import dev.twiceover.blocky.gfx.GameCamera;
 import dev.twiceover.blocky.input.KeyManager;
+import dev.twiceover.blocky.input.MouseManager;
 import dev.twiceover.blocky.worlds.World;
 
 public class Handler {
@@ -15,6 +16,10 @@ public class Handler {
 	
 	
 	// Getters/Setters
+	public MouseManager getMouseManager() {
+		return game.getMouseManager();
+	}
+	
 	public int getWidth() {
 		return game.getWidth();
 	}
