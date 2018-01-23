@@ -11,6 +11,7 @@ import dev.twiceover.blocky.gameObjects.statics.Tree;
 import dev.twiceover.blocky.utils.Utils;
 
 public class World {
+	
 	private Handler handler;
 	private int width, height;
 	private int spawnx, spawny;
@@ -84,5 +85,9 @@ public class World {
 	
 	public int getHeight() {
 		return height;
+	}
+
+	public GameObjectManager getObjectManager() {
+		return objectManager;
 	}
 }

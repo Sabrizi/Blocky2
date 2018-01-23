@@ -16,22 +16,19 @@ public class GameObjectManager {
 		this.handler = handler;
 		this.player = player;
 		objects = new ArrayList<GameObject>();
+		objects.add(player);
 	}
 
 	public void tick() {
 		for (int i = 0; i < objects.size(); i++) {
 			objects.get(i).tick();
 		}
-
-		player.tick();
 	}
 
 	public void render(Graphics g) {
 		for(GameObject o : objects) {
 			o.render(g);
 		}
-		
-		player.render(g);
 	}
 
 	public void addGameObject(GameObject g) {

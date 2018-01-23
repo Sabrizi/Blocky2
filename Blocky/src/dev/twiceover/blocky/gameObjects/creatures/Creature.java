@@ -26,8 +26,8 @@ public abstract class Creature extends GameObject {
 	}
 
 	public void move() {
-		movex();
-		movey();
+		if (!checkObjectCollisions(xMove, 0f)) movex();
+		if (!checkObjectCollisions(0f, yMove)) movey();
 	}
 
 	public void movex() {

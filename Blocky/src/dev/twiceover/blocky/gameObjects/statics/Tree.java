@@ -10,7 +10,11 @@ public class Tree extends StaticGameObject {
 
 	public Tree(Handler handler, float x, float y) {
 		super(handler, x, y, Block.BLOCK_WIDTH, Block.BLOCK_HEIGHT, Color.GREEN);
-		// TODO Auto-generated constructor stub
+		
+		bounds.x = 0;
+		bounds.y = 0;
+		bounds.width = Block.BLOCK_WIDTH - 1;
+		bounds.height = Block.BLOCK_HEIGHT - 1;
 	}
 
 	@Override
